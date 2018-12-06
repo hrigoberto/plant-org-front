@@ -1,22 +1,15 @@
 import React from 'react';
 import PlantCard from './PlantCard';
-import API from '../api';
+import { connect } from 'react-redux';
+import { fetchPlants } from '../actions';
 
 
 class PlantList extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      plants: []
-    }
-  }
-  async componentDidMount() {
-    const res = await API.get();
-    this.setState({ plants: res.data })
+  componentDidMount() {
+    this.props.fetchPlants();
   }
   getPlants() {
-    return this.state.plants.map(plant => <PlantCard plant={plant} key={plant._id} />);
+    return this.props.plants.map(plant => <PlantCard plant={plant} key={plant._id} />);
   }
   render() {
     return (
@@ -27,4 +20,8 @@ class PlantList extends React.Component {
   }
 }
 
-export default PlantList;
+const mapStateToProps = state => {
+  return { plants: state.plants };
+}
+
+export default connect(mapStateToProps, { fetchPlants })(PlantList);
