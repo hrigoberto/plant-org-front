@@ -3,24 +3,68 @@ import React from 'react';
 // TODO wire up input fields to state, and then on formsubmit make a post request through an action creator
 
 class PlantForm extends React.Component {
-  onFormSubmit = e => {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      plant: {}
+    }
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
-    console.log(e);
+
+  }
+  handleInputChange = e => {
+    this.setState({ plant: { [e.target.name]: e.target.value } })
   }
   render() {
     return (
-      <form onSubmit={this.onFormSubmit} className="ui form">
+      <form className="ui form">
         <h4 className="ui dividing header">Description</h4>
-        <div className="field">
-          <input type="text" name="plant[commonName]" placeholder="Common Name"/>
+        <div className="fields">
+          <div className="four wide field">
+            <input onChange={this.handleInputChange} type="text" name="commonName" value={this.state.commonName}/>
+          </div>
+          <div className="four wide field">
+            <input onChange={this.handleInputChange} type="text" name="species" placeholder="Species"/>
+          </div>
+          <div className="four wide field">
+            <input onChange={this.handleInputChange} type="text" name="color" placeholder="Color"/>
+          </div>
+          <div className="four wide field">
+            <input onChange={this.handleInputChange} type="text" name="imageUrl" placeholder="Image URL"/>
+          </div>
         </div>
-        <div className="field">
-          <input type="text" name="plant[species]" placeholder="Species"/>
+        <div className="fields">
+          <div className="two wide field">
+            <input onChange={this.handleInputChange} type="text" name="height" placeholder="Height"/>
+          </div>
+          <div className="two wide field">
+            <input onChange={this.handleInputChange} type="text" name="plantingDepth" placeholder="Planting Depth"/>
+          </div>
+          <div className="two wide field">
+            <input onChange={this.handleInputChange} type="text" name="plantSpacing" placeholder="Plant Spacing"/>
+          </div>
+          <div className="two wide field">
+            <input onChange={this.handleInputChange} type="text" name="number" placeholder="# of Plants"/>
+          </div>
+          <div className="three wide field">
+            <input onChange={this.handleInputChange} type="text" name="sunReq" placeholder="Sun Requirement"/>
+          </div>
+          <div className="two wide field">
+            <input onChange={this.handleInputChange} type="text" name="daysToBloom" placeholder="Days to Bloom"/>
+          </div>
+          <div className="three wide field">
+            <input onChange={this.handleInputChange} type="text" name="seedingDate" placeholder="Seeding Date"/>
+          </div>
         </div>
-        <div className="field">
-          <input type="text" name="plant[color]" placeholder="Color"/>
+        <div className="sixteen wide field">
+          <input onChange={this.handleInputChange} type="text" name="notes" placeholder="Notes"/>
         </div>
-        <button className="ui button" type="submit">Submit</button>
+        <button onClick={this.handleSubmit} className="ui button" type="submit">Submit</button>
       </form>
     )
   }
