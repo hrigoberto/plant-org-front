@@ -24,13 +24,13 @@ class PlantForm extends React.Component {
       seedingDate: new Date(),
       notes: ''
     }
-    // this.handleInputChange = this.handleInputChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.createPlantandRefresh(this.state);
+    const plant = this.state;
+    delete plant.success;
+    this.props.createPlantandRefresh(plant);
     this.setState({
       commonName: '',
       species: '',
@@ -43,8 +43,10 @@ class PlantForm extends React.Component {
       sunReq: '',
       daysToBloom: '',
       seedingDate: new Date(),
-      notes: ''
+      notes: '',
+      success: 'success'
     })
+    setTimeout(() => this.setState({ success: ''} ), 3000)
   }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -54,7 +56,7 @@ class PlantForm extends React.Component {
   }
   render() {
     return (
-      <form className="ui form">
+      <form className={`ui form ${this.state.success}`}>
         <div className="fields">
           <div className="four wide field">
             <input onChange={this.handleInputChange} type="text" name="commonName" value={this.state.commonName} placeholder="Common Name"/>
@@ -98,7 +100,11 @@ class PlantForm extends React.Component {
         <div className="sixteen wide field">
           <textarea rows="2" onChange={this.handleInputChange} name="notes" value={this.state.notes} placeholder="Notes"/>
         </div>
-        <button onClick={this.handleSubmit} className="ui button" type="submit">Submit</button>
+        <div className="ui success message">
+          <div className="header">Form Completed</div>
+          <p>Your entry has been recorded</p>
+        </div>
+        <button onClick={this.handleSubmit} className="ui submit button" type="submit">Submit</button>
       </form>
     )
   }
