@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { deletePlant } from '../actions';
 
-const PlantCard = ({plant}) => {
+const PlantCard = ({plant, deletePlant}) => {
+  const deleteThething = () => {
+    deletePlant(plant)
+  }
   return (
     <div className="ui fluid card">
       <div className="content">
@@ -22,10 +27,11 @@ const PlantCard = ({plant}) => {
             <div className="four wide column">Seeding Date: {plant.seedingDate}</div>
           </div>
           <p className="center aligned">{plant.notes}</p>
+          <button className="ui red button" onClick={deleteThething}>DELETE</button>
         </div>
       </div>
     </div>
   )
 }
 
-export default PlantCard;
+export default connect(null, { deletePlant })(PlantCard);
