@@ -3,7 +3,7 @@ import { FETCH_PLANTS } from '../constants';
 import { POST_PLANT } from '../constants';
 
 export const createPlantandRefresh = (plant) => async dispatch => {
-  await dispatch(postPlant(plant));
+  await dispatch(postOrPutPlant(plant));
   await dispatch(fetchPlants());
 }
 
@@ -13,8 +13,8 @@ export const fetchPlants = () => async dispatch => {
   dispatch({ type: FETCH_PLANTS, payload: response.data})
 }
 
-export const postPlant = (plant) => async dispatch => {
-  const response = await API.post('/', plant);
+export const postOrPutPlant = (plant) => async dispatch => {
+  const response = plant._id ? await API.put(`/${plant._id}`, plant) : await API.post('/', plant);
 
   dispatch({ type: POST_PLANT, payload: response.data})
 }

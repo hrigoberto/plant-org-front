@@ -10,22 +10,33 @@ class PlantForm extends React.Component {
   constructor(props){
     super(props)
 
-    this.state = {
-      commonName: '',
-      species: '',
-      color: '',
-      imageUrl: '',
-      height: '',
-      plantingDepth: '',
-      plantSpacing: '',
-      number: '',
-      sunReq: '',
-      daysToBloom: '',
-      seedingDate: new Date(),
-      notes: ''
+
+      this.state = {
+        commonName: '',
+        species: '',
+        color: '',
+        imageUrl: '',
+        height: '',
+        plantingDepth: '',
+        plantSpacing: '',
+        number: '',
+        sunReq: '',
+        daysToBloom: '',
+        seedingDate: new Date(),
+        notes: ''
+      }
+  }
+  componentDidMount() {
+    if (this.props.plant) {
+      if((this.props.plant.seedingDate) instanceof Date) {
+        return this.setState(this.props.plant);
+      } else {
+        const plant = this.props.plant
+        plant.seedingDate = new Date(plant.seedingDate);
+        return this.setState(plant);
+      }
     }
   }
-
   handleSubmit = e => {
     e.preventDefault();
     const plant = this.state;
