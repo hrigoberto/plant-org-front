@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postPlant, fetchPlants } from '../actions';
+import { createPlantandRefresh } from '../actions';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
-// TODO wire up input fields to state, and then on formsubmit make a post request through an action creator
+// TODO  update button
 
 class PlantForm extends React.Component {
   constructor(props){
@@ -19,25 +21,40 @@ class PlantForm extends React.Component {
       number: '',
       sunReq: '',
       daysToBloom: '',
-      seedingDate: '',
+      seedingDate: new Date(),
       notes: ''
     }
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleInputChange = this.handleInputChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.postPlant(this.state);
-    this.props.fetchPlants();
+    this.props.createPlantandRefresh(this.state);
+    this.setState({
+      commonName: '',
+      species: '',
+      color: '',
+      imageUrl: '',
+      height: '',
+      plantingDepth: '',
+      plantSpacing: '',
+      number: '',
+      sunReq: '',
+      daysToBloom: '',
+      seedingDate: new Date(),
+      notes: ''
+    })
   }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
+  handleDateChange = e =>  {
+    this.setState({ seedingDate: e });
+  }
   render() {
     return (
       <form className="ui form">
-        <h4 className="ui dividing header">Description</h4>
         <div className="fields">
           <div className="four wide field">
             <input onChange={this.handleInputChange} type="text" name="commonName" value={this.state.commonName} placeholder="Common Name"/>
@@ -72,11 +89,14 @@ class PlantForm extends React.Component {
             <input onChange={this.handleInputChange} type="text" name="daysToBloom" value={this.state.daysToBloom} placeholder="Days to Bloom"/>
           </div>
           <div className="three wide field">
-            <input onChange={this.handleInputChange} type="text" name="seedingDate" value={this.state.seedingDate} placeholder="Seeding Date"/>
+            <DatePicker
+              selected={this.state.seedingDate}
+              onChange={this.handleDateChange}
+            />
           </div>
         </div>
         <div className="sixteen wide field">
-          <input onChange={this.handleInputChange} type="text" name="notes" value={this.state.notes} placeholder="Notes"/>
+          <textarea rows="2" onChange={this.handleInputChange} name="notes" value={this.state.notes} placeholder="Notes"/>
         </div>
         <button onClick={this.handleSubmit} className="ui button" type="submit">Submit</button>
       </form>
@@ -84,4 +104,4 @@ class PlantForm extends React.Component {
   }
 }
 
-export default connect(null, { postPlant, fetchPlants })(PlantForm);
+export default connect(null, { createPlantandRefresh })(PlantForm);

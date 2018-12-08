@@ -2,6 +2,10 @@ import API from '../api';
 import { FETCH_PLANTS } from '../constants';
 import { POST_PLANT } from '../constants';
 
+export const createPlantandRefresh = (plant) => async dispatch => {
+  await dispatch(postPlant(plant));
+  await dispatch(fetchPlants());
+}
 
 export const fetchPlants = () => async dispatch => {
   const response = await API.get();
