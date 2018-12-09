@@ -26,7 +26,7 @@ class PlantCard extends React.Component {
       <button className="ui blue button right floated" onClick={this.switchEdit}>Close</button>
     </div>
     ) : (
-      <div className="ui raised fluid card">
+      <div className="ui raised fluid plant card">
         <div className="content">
           <div className="ui medium image left floated">
             <img src={plant.imageUrl} alt={plant.commonName} />
@@ -39,8 +39,8 @@ class PlantCard extends React.Component {
           </div>
           <br />
           <div className="left floated"><h4>Notes:</h4>{plant.notes}</div>
-          <button className="ui red button right floated" onClick={this.deleteThething}>DELETE</button>
-          <button className="ui blue button right floated" onClick={this.switchEdit}>EDIT</button>
+          <button className="ui red button right floated right attached" onClick={this.deleteThething}>DELETE</button>
+          <button className="ui teal button right floated left attached" onClick={this.switchEdit}>EDIT</button>
           <div className="description">
             <div className="ui grid">
               <div className="two wide column"><h4>Height:</h4> {plant.height} inches</div>

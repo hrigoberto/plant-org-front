@@ -5,7 +5,7 @@ import PlantForm from './PlantForm';
 
 const App = () => {
   return (
-    <div className="ui container" style={{marginTop: "20px"}}>
+    <div className="ui container" style={{marginTop: "20px", background: "#dde1c6"}}>
       <BrowserRouter>
         <div>
           <Route path="/" exact component={PlantForm} />
