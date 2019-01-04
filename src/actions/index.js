@@ -14,7 +14,6 @@ export const fetchPlants = () => async dispatch => {
 }
 
 export const postOrPutPlant = (plant) => async dispatch => {
-  console.log('Plant in action',plant);
   const response = plant._id ? await API.put(`/${plant._id}`, plant) : await API.post('/', plant);
 
   dispatch({ type: POST_PLANT, payload: response.data})

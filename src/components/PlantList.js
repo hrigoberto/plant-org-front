@@ -10,8 +10,8 @@ class PlantList extends React.Component {
   }
   getPlants() {
     const alphPlants = this.props.plants.sort(function(a, b) {
-   return a.commonName.toLowerCase().localeCompare(b.commonName.toLowerCase());
-})
+      return a.commonName.toLowerCase().localeCompare(b.commonName.toLowerCase());
+    })
     return alphPlants.map(plant => <PlantCard plant={plant} key={plant._id} />);
   }
   render() {
