@@ -4,8 +4,6 @@ import { createPlantandRefresh } from '../actions';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-// TODO  update button
-
 class PlantForm extends React.Component {
   constructor(props){
     super(props)

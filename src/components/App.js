@@ -5,8 +5,6 @@ import PlantForm from './PlantForm';
 
 // TODO:
 // be able to duplicate
-// alphabetical
-// delete popup
 
 const App = () => {
   return (
