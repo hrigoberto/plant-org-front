@@ -8,7 +8,7 @@ const App = () => {
     <div className="ui container" style={{marginTop: "20px", background: "#dde1c6"}}>
       <BrowserRouter>
         <div>
-          <Route path="/" exact component={PlantForm} />
+          <Route path="/" exact render={() => <PlantForm editing={false} />} />
           <Route path="/" exact component={PlantList} />
         </div>
       </BrowserRouter>

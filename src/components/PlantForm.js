@@ -12,7 +12,9 @@ class PlantForm extends React.Component {
 
 
       this.state = {
+        editing: 'false',
         commonName: '',
+        variety: '',
         species: '',
         color: '',
         imageUrl: '',
@@ -22,6 +24,7 @@ class PlantForm extends React.Component {
         number: '',
         sunReq: '',
         daysToBloom: '',
+        germinationTemp: '',
         seedingDate: new Date(),
         notes: ''
       }
@@ -42,21 +45,29 @@ class PlantForm extends React.Component {
     const plant = this.state;
     delete plant.success;
     this.props.createPlantandRefresh(plant);
-    this.setState({
-      commonName: '',
-      species: '',
-      color: '',
-      imageUrl: '',
-      height: '',
-      plantingDepth: '',
-      plantSpacing: '',
-      number: '',
-      sunReq: '',
-      daysToBloom: '',
-      seedingDate: new Date(),
-      notes: '',
-      success: 'success'
-    })
+    if (this.props.editing === false) {
+      this.setState({
+        commonName: '',
+        species: '',
+        variety: '',
+        color: '',
+        imageUrl: '',
+        height: '',
+        plantingDepth: '',
+        plantSpacing: '',
+        number: '',
+        sunReq: '',
+        daysToBloom: '',
+        germinationTemp: '',
+        seedingDate: new Date(),
+        notes: '',
+        success: 'success'
+      })
+    } else {
+      this.setState({
+        success: 'success'
+      })
+    }
     setTimeout(() => this.setState({ success: ''} ), 2000)
   }
   handleInputChange = e => {
@@ -77,7 +88,10 @@ class PlantForm extends React.Component {
               <div className="four wide field">
                 <input onChange={this.handleInputChange} type="text" name="species" value={this.state.species} placeholder="Species"/>
               </div>
-              <div className="four wide field">
+              <div className="two wide field">
+                <input onChange={this.handleInputChange} type="text" name="variety" value={this.state.variety} placeholder="Variety"/>
+              </div>
+              <div className="two wide field">
                 <input onChange={this.handleInputChange} type="text" name="color" value={this.state.color} placeholder="Color"/>
               </div>
               <div className="four wide field">
@@ -85,7 +99,7 @@ class PlantForm extends React.Component {
               </div>
             </div>
             <div className="fields">
-              <div className="two wide field">
+              <div className="one wide field">
                 <input onChange={this.handleInputChange} type="text" name="height" value={this.state.height} placeholder="Height"/>
               </div>
               <div className="two wide field">
@@ -94,7 +108,7 @@ class PlantForm extends React.Component {
               <div className="two wide field">
                 <input onChange={this.handleInputChange} type="text" name="plantSpacing" value={this.state.plantSpacing} placeholder="Plant Spacing"/>
               </div>
-              <div className="two wide field">
+              <div className="one wide field">
                 <input onChange={this.handleInputChange} type="text" name="number" value={this.state.number} placeholder="# of Plants"/>
               </div>
               <div className="three wide field">
@@ -102,6 +116,9 @@ class PlantForm extends React.Component {
               </div>
               <div className="two wide field">
                 <input onChange={this.handleInputChange} type="text" name="daysToBloom" value={this.state.daysToBloom} placeholder="Days to Bloom"/>
+              </div>
+              <div className="two wide field">
+                <input onChange={this.handleInputChange} type="text" name="germinationTemp" value={this.state.germinationTemp} placeholder="Germination Temperature"/>
               </div>
               <div className="three wide field">
                 <DatePicker

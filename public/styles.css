@@ -2,6 +2,6 @@ body {
   background: #dde1c6;
 }
 
-.ui.card, .ui.cards>.card !important {
+.ui.card !important {
   background: #fffcf5;
 }
