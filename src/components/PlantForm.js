@@ -45,7 +45,7 @@ class PlantForm extends React.Component {
     const plant = this.state;
     delete plant.success;
     this.props.createPlantandRefresh(plant);
-    if (this.props.editing === false) {
+    if (this.props.edit === false) {
       this.setState({
         commonName: '',
         species: '',
@@ -67,8 +67,9 @@ class PlantForm extends React.Component {
       this.setState({
         success: 'success'
       })
+      return setTimeout(() => this.props.switchEdit(), 500)
     }
-    setTimeout(() => this.setState({ success: ''} ), 2000)
+    setTimeout(() => this.setState({ success: ''} ), 1000)
   }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value })
