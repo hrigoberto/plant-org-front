@@ -31,18 +31,21 @@ class PlantCard extends React.Component {
           <div className="ui medium image left floated">
             <img src={plant.imageUrl} alt={plant.commonName} />
           </div>
-          <div className="header">{plant.commonName}</div>
+          <div className="header">
+            {plant.commonName}
+            <button className="ui red button right floated right attached" onClick={this.deleteThething}>DELETE</button>
+            <button className="ui teal button right floated left attached" onClick={this.switchEdit}>EDIT</button>
+          </div>
           <div className="meta">
             <span>species: {plant.species}</span>
             <br />
-            <span>variery: {plant.variety}</span>
+            <span>variety: {plant.variety}</span>
             <br />
             <span>Sun Requirement: {plant.sunReq}</span>
           </div>
           <br />
+
           <div className="left floated"><h4>Notes:</h4>{plant.notes}</div>
-          <button className="ui red button right floated right attached" onClick={this.deleteThething}>DELETE</button>
-          <button className="ui teal button right floated left attached" onClick={this.switchEdit}>EDIT</button>
           <div className="description">
             <div className="ui grid">
               <div className="one wide column"><h4>Height:</h4> {plant.height} inches</div>

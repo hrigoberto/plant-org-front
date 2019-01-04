@@ -3,6 +3,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import PlantList from './PlantList';
 import PlantForm from './PlantForm';
 
+// TODO:
+// be able to duplicate
+// alphabetical
+// delete popup
+
 const App = () => {
   return (
     <div className="ui container" style={{marginTop: "20px", background: "#dde1c6"}}>
