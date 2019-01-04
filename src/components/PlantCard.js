@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deletePlant } from '../actions';
+import { deletePlant, createPlantandRefresh } from '../actions';
 import PlantForm from './PlantForm';
 
 
@@ -21,6 +21,12 @@ class PlantCard extends React.Component {
   switchEdit = () => {
     this.setState({ editing: !this.state.editing });
   }
+  duplicate = () => {
+    const dup = this.props.plant
+    delete dup._id
+    this.props.createPlantandRefresh(dup);
+    return this.switchEdit();
+  }
   render() {
     return this.state.editing ? (
     <div className="ui raised fluid card">
@@ -39,6 +45,7 @@ class PlantCard extends React.Component {
             <span>{this.props.plant.commonName}</span>
             <button className="ui red button right floated right attached" onClick={this.deleteThething}>DELETE</button>
             <button className="ui teal button right floated left attached" onClick={this.switchEdit}>EDIT</button>
+            <button className="ui teal button right floated left attached" onClick={this.duplicate}>DUPLICATE</button>
           </div>
           <div className="meta">
             <span>species: {this.props.plant.species}</span>
@@ -68,8 +75,9 @@ class PlantCard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    deletePlant: deletePlant
+    deletePlant: deletePlant,
+    createPlantandRefresh: createPlantandRefresh
   }
 }
 
-export default connect(mapStateToProps, { deletePlant })(PlantCard);
+export default connect(mapStateToProps, { deletePlant, createPlantandRefresh })(PlantCard);
