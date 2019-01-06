@@ -1,7 +1,8 @@
 body {
-  background: #dde1c6;
+  background: #fbf3e9;
+  color: #ffffff;
 }
 
 .ui.card !important {
-  background: #fffcf5;
+  background: #fffff;
 }

@@ -12,11 +12,32 @@ class PlantList extends React.Component {
     const alphPlants = this.props.plants.sort(function(a, b) {
       return a.commonName.toLowerCase().localeCompare(b.commonName.toLowerCase());
     })
-    return alphPlants.map(plant => <PlantCard plant={plant} key={plant._id} />);
+    const listToRows = (list, elementsPerSubArray) => {
+      let matrix = [], i, k;
+
+      for (i = 0, k = -1; i < list.length; i++) {
+          if (i % elementsPerSubArray === 0) {
+              k++;
+              matrix[k] = [];
+          }
+
+          matrix[k].push(list[i]);
+      }
+
+      return matrix;
+    }
+    const rowMatrix = listToRows(alphPlants, 3);
+
+    return rowMatrix.map(row =>(
+      <div className="columns">
+        {row.map(plant => <PlantCard plant={plant} key={plant._id} />)}
+      </div>
+      )
+    )
   }
   render() {
     return (
-      <div className="ui list">
+      <div className="container is-fluid">
         {this.getPlants()}
       </div>
     )
