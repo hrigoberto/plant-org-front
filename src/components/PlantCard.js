@@ -45,9 +45,22 @@ class PlantCard extends React.Component {
             </figure>
           </div>
           <div className="card-content">
-            <p class="title is-4">{plant.commonName}</p>
-            <p class="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
-            <p class="subtitle is-6">{plant.variety}</p>
+            <p className="title is-4">{plant.commonName}</p>
+            <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
+            <p className="subtitle is-6">{plant.variety}</p>
+          </div>
+          <div className="card-content"></div>
+        </div>
+        <div className="card" style={{height: "70vh"}}>
+          <div className="card-image">
+            <figure className="image is-1by1">
+              <img src={plant.imageUrl} alt={plant.commonName} />
+            </figure>
+          </div>
+          <div className="card-content">
+            <p className="title is-4">{plant.commonName}</p>
+            <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
+            <p className="subtitle is-6">{plant.variety}</p>
           </div>
           <div className="card-content"></div>
         </div>

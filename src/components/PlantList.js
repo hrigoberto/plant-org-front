@@ -28,8 +28,8 @@ class PlantList extends React.Component {
     }
     const rowMatrix = listToRows(alphPlants, 3);
 
-    return rowMatrix.map(row =>(
-      <div className="columns">
+    return rowMatrix.map((row, i) =>(
+      <div className="columns" key={i}>
         {row.map(plant => <PlantCard plant={plant} key={plant._id} />)}
       </div>
       )
