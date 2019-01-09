@@ -1,6 +1,19 @@
 import API from '../api';
-import { FETCH_PLANTS } from '../constants';
-import { POST_PLANT } from '../constants';
+import { FETCH_PLANTS, POST_PLANT, SIGN_IN, SIGN_OUT } from '../constants';
+import {  } from '../constants';
+
+export const signIn = (userId) => {
+  return {
+    type: SIGN_IN,
+    payload: userId
+  };
+};
+
+export const signOut = () => {
+  return {
+    type: SIGN_OUT
+  };
+};
 
 export const createPlantandRefresh = (plant) => async dispatch => {
   await dispatch(postOrPutPlant(plant));

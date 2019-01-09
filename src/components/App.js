@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import PlantList from './PlantList';
 import PlantForm from './PlantForm';
 import NavBar from './NavBar';
+import GoogleAuth from './GoogleAuth';
 
 // TODO:
 // be able to duplicate
@@ -13,6 +14,7 @@ const App = () => {
       <BrowserRouter>
         <div>
             <Route path="/" exact component={NavBar} />
+            <Route path="/login" exact component={GoogleAuth} />
             <section className="hero">
               <div className="hero-body">
                 <div className="container has-text-centered">

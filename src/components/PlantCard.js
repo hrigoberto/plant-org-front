@@ -65,6 +65,7 @@ class PlantCard extends React.Component {
           <div className="card-content"></div>
         </div>
       </div>
+
       // <div className="ui raised fluid plant card">
       //   <div className="content">
       //     <div className="ui medium image left floated">
