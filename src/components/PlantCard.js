@@ -33,8 +33,8 @@ class PlantCard extends React.Component {
   render() {
     const { plant } = this.props
     return this.state.editing ? (
-    <div className="ui raised fluid card">
-      <div className="content">
+    <div className="column card">
+      <div className="card-content">
         <PlantForm plant={plant} edit={true} switchEdit={this.switchEdit} />
         <button className="ui grey small button right floated" onClick={this.switchEdit}>back</button>
       </div>
@@ -63,6 +63,11 @@ class PlantCard extends React.Component {
           </FrontSide>
           <BackSide>
             <div className="card" style={{height: "70vh"}}>
+              <div className="card-header">
+                <button className="ui red button right floated right attached" onClick={this.deleteThething}>DELETE</button>
+                <button className="ui teal button right floated left attached" onClick={this.switchEdit}>EDIT</button>
+                <button className="ui teal button right floated left attached" onClick={this.duplicate}>DUPLICATE</button>
+              </div>
               <div className="card-content">
                 <p className="title is-4">{plant.commonName}</p>
                 <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>

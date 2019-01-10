@@ -131,11 +131,6 @@ class PlantForm extends React.Component {
           </div>
           <div className="field">
             <div className="control">
-              <input onChange={this.handleInputChange} className="input is-small" type="text" value={this.state.number} name="number" placeholder="number" />
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
               <input onChange={this.handleInputChange} className="input is-small" type="text" value={this.state.daysToBloom} name="daysToBloom" placeholder="daysToBloom" />
             </div>
           </div>
