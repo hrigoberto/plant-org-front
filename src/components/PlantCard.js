@@ -73,7 +73,6 @@ class PlantCard extends React.Component {
                     <div className="tr"><td>Planting Depth:</td><td> {plant.plantingDepth} inches</td></div>
                     <div className="tr"><td>Plant Spacing:</td><td> {plant.plantSpacing} inches</td></div>
                     <div className="tr"><td>Color:</td><td> {plant.color}</td></div>
-                    <div className="tr"><td>Number:</td><td> {plant.number}</td></div>
                     <div className="tr"><td>Days to bloom:</td><td> {plant.daysToBloom}</td></div>
                     <div className="tr"><td>Germination Temp:</td><td> {plant.germinationTemp}</td></div>
                     <div className="tr"><td>Seeding Date:</td><td> {plant.seedingDate.toString()}</td></div>
