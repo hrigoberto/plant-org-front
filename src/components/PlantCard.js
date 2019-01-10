@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deletePlant, createPlantandRefresh } from '../actions';
 import PlantForm from './PlantForm';
-
+import Flippy, { FrontSide, BackSide } from 'react-flippy';
 
 class PlantCard extends React.Component {
   constructor(props) {
@@ -27,6 +27,9 @@ class PlantCard extends React.Component {
     this.props.createPlantandRefresh(dup);
     return this.switchEdit();
   }
+  flipCard = () => {
+
+  }
   render() {
     const { plant } = this.props
     return this.state.editing ? (
@@ -37,33 +40,49 @@ class PlantCard extends React.Component {
       </div>
     </div>
     ) : (
-      <div className="column">
-        <div className="card" style={{height: "70vh"}}>
-          <div className="card-image">
-            <figure className="image is-1by1">
-              <img src={plant.imageUrl} alt={plant.commonName} />
-            </figure>
-          </div>
-          <div className="card-content">
-            <p className="title is-4">{plant.commonName}</p>
-            <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
-            <p className="subtitle is-6">{plant.variety}</p>
-          </div>
-          <div className="card-content"></div>
-        </div>
-        <div className="card" style={{height: "70vh"}}>
-          <div className="card-image">
-            <figure className="image is-1by1">
-              <img src={plant.imageUrl} alt={plant.commonName} />
-            </figure>
-          </div>
-          <div className="card-content">
-            <p className="title is-4">{plant.commonName}</p>
-            <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
-            <p className="subtitle is-6">{plant.variety}</p>
-          </div>
-          <div className="card-content"></div>
-        </div>
+      <div className="column" id="card">
+        <Flippy
+          flipOnHover={false}
+          flipOnClick={true}
+          flipDirection="horizontal"
+        >
+          <FrontSide>
+            <div className="card" style={{height: "70vh"}} onClick={this.flipCard}>
+              <div className="card-image">
+                <figure className="image is-1by1">
+                  <img src={plant.imageUrl} alt={plant.commonName} />
+                </figure>
+              </div>
+              <div className="card-content">
+                <p className="title is-4">{plant.commonName}</p>
+                <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
+                <p className="subtitle is-6">{plant.variety}</p>
+              </div>
+              <div className="card-content"></div>
+            </div>
+          </FrontSide>
+          <BackSide>
+            <div className="card" style={{height: "70vh"}}>
+              <div className="card-content">
+                <p className="title is-4">{plant.commonName}</p>
+                <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
+                <p className="subtitle is-6">{plant.variety}</p>
+                <div className="table is-fullwidth is-striped">
+                  <div className="tbody">
+                    <div className="tr"><td>Height:</td><td> {plant.height} inches</td></div>
+                    <div className="tr"><td>Planting Depth:</td><td> {plant.plantingDepth} inches</td></div>
+                    <div className="tr"><td>Plant Spacing:</td><td> {plant.plantSpacing} inches</td></div>
+                    <div className="tr"><td>Color:</td><td> {plant.color}</td></div>
+                    <div className="tr"><td>Number:</td><td> {plant.number}</td></div>
+                    <div className="tr"><td>Days to bloom:</td><td> {plant.daysToBloom}</td></div>
+                    <div className="tr"><td>Germination Temp:</td><td> {plant.germinationTemp}</td></div>
+                    <div className="tr"><td>Seeding Date:</td><td> {plant.seedingDate.toString()}</td></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </BackSide>
+        </Flippy>
       </div>
 
       // <div className="ui raised fluid plant card">
