@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import GoogleAuth from './GoogleAuth';
 
 const NavBar = () => {
   return (
@@ -21,6 +22,7 @@ const NavBar = () => {
               <strong>Create New Plant</strong>
             </button>
           </Link>
+          <span><GoogleAuth /></span>
           </div>
         </div>
       </div>

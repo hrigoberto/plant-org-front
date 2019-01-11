@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { deletePlant, createPlantandRefresh } from '../actions';
 import PlantForm from './PlantForm';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
+require('dotenv').config({path: __dirname + '/.env'});
+const adminId = process.env.REACT_APP_ADMIN_ID;
+
 
 class PlantCard extends React.Component {
   constructor(props) {
@@ -27,8 +30,18 @@ class PlantCard extends React.Component {
     this.props.createPlantandRefresh(dup);
     return this.switchEdit();
   }
-  flipCard = () => {
-
+  displayAdminControls = () => {
+    if (this.props.auth.isSignedIn && (this.props.auth.userId === adminId)) {
+      return (
+        <div className="card-header">
+          <button className="ui red button right floated right attached" onClick={this.deleteThething}>DELETE</button>
+          <button className="ui teal button right floated left attached" onClick={this.switchEdit}>EDIT</button>
+          <button className="ui teal button right floated left attached" onClick={this.duplicate}>DUPLICATE</button>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
   render() {
     const { plant } = this.props
@@ -55,7 +68,6 @@ class PlantCard extends React.Component {
               </div>
               <div className="card-content">
                 <p className="title is-4">{plant.commonName}</p>
-                <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
                 <p className="subtitle is-6">{plant.variety}</p>
               </div>
               <div className="card-content"></div>
@@ -63,28 +75,23 @@ class PlantCard extends React.Component {
           </FrontSide>
           <BackSide>
             <div className="card" style={{height: "70vh"}}>
-              <div className="card-header">
-                <button className="ui red button right floated right attached" onClick={this.deleteThething}>DELETE</button>
-                <button className="ui teal button right floated left attached" onClick={this.switchEdit}>EDIT</button>
-                <button className="ui teal button right floated left attached" onClick={this.duplicate}>DUPLICATE</button>
-              </div>
               <div className="card-content">
                 <p className="title is-4">{plant.commonName}</p>
-                <p className="subtitle is-6">{() => plant.variety ? `@${plant.variety}` : ''}</p>
                 <p className="subtitle is-6">{plant.variety}</p>
-                <div className="table is-fullwidth is-striped">
-                  <div className="tbody">
-                    <div className="tr"><td>Height:</td><td> {plant.height} inches</td></div>
-                    <div className="tr"><td>Planting Depth:</td><td> {plant.plantingDepth} inches</td></div>
-                    <div className="tr"><td>Plant Spacing:</td><td> {plant.plantSpacing} inches</td></div>
-                    <div className="tr"><td>Color:</td><td> {plant.color}</td></div>
-                    <div className="tr"><td>Days to bloom:</td><td> {plant.daysToBloom}</td></div>
-                    <div className="tr"><td>Germination Temp:</td><td> {plant.germinationTemp}</td></div>
-                    <div className="tr"><td>Seeding Date:</td><td> {plant.seedingDate.toString()}</td></div>
-                  </div>
-                </div>
+                <table className="table is-fullwidth is-striped">
+                  <tbody className="tbody">
+                    <tr className="tr"><td>Height:</td><td> {plant.height} inches</td></tr>
+                    <tr className="tr"><td>Planting Depth:</td><td> {plant.plantingDepth} inches</td></tr>
+                    <tr className="tr"><td>Plant Spacing:</td><td> {plant.plantSpacing} inches</td></tr>
+                    <tr className="tr"><td>Color:</td><td> {plant.color}</td></tr>
+                    <tr className="tr"><td>Days to bloom:</td><td> {plant.daysToBloom}</td></tr>
+                    <tr className="tr"><td>Germination Temp:</td><td> {plant.germinationTemp}</td></tr>
+                    <tr className="tr"><td>Seeding Date:</td><td> {plant.seedingDate.toString()}</td></tr>
+                  </tbody>
+                </table>
               </div>
             </div>
+            {this.displayAdminControls()}
           </BackSide>
         </Flippy>
       </div>
@@ -129,7 +136,8 @@ class PlantCard extends React.Component {
 const mapStateToProps = (state) => {
   return {
     deletePlant: deletePlant,
-    createPlantandRefresh: createPlantandRefresh
+    createPlantandRefresh: createPlantandRefresh,
+    auth: state.auth
   }
 }
 
