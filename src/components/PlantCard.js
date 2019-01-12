@@ -53,7 +53,7 @@ class PlantCard extends React.Component {
       </div>
     </div>
     ) : (
-      <div className="column" id="card">
+      <div className="column is-one-third" id="card">
         <Flippy
           flipOnHover={false}
           flipOnClick={true}

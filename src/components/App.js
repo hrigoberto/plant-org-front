@@ -28,15 +28,21 @@ const App = () => {
               </div>
             </section>
             <Route path="/form" exact render={() =>
-              <div>
-                <PlantForm edit={false} />
-                <Link to="/">
-                  <button class="button is-danger">
-                    <strong>Cancel</strong>
-                  </button>
-                </Link>
-              </div>} />
+              <div className="container">
+                <div className="column">
+                  <PlantForm edit={false} />
+                  <Link to="/">
+                    <button class="button is-danger">
+                      <strong>Cancel</strong>
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            } />
             <Route path="/" exact component={PlantList} />
+            <div className="hero">
+              <div className="hero-body"></div>
+            </div>
         </div>
       </BrowserRouter>
     </div>
