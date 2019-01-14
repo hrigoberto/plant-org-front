@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 import GoogleAuth from './GoogleAuth';
 
 // TODO:
-// be able to duplicate
+// remove createnewplant button when not logged in
 
 const App = () => {
   return (
