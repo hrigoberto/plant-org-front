@@ -12,12 +12,12 @@ class PlantList extends React.Component {
     this.props.fetchPlants();
   }
   getPlants = () => {
-    console.log('THISSATE', this.state);
+    console.log('THISSATE', this.props.plants);
     const alphPlants = this.props.plants.sort(function(a, b) {
       return a.commonName.toLowerCase().localeCompare(b.commonName.toLowerCase());
     })
     const filteredAlphPlants = alphPlants.filter(plant => plant.commonName.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
-    
+
     const listToRows = (list, elementsPerSubArray) => {
       let matrix = [], i, k;
 

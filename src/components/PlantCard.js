@@ -74,12 +74,12 @@ class PlantCard extends React.Component {
             </div>
           </FrontSide>
           <BackSide>
-            <div className="card" style={{height: "70vh"}}>
+            <div className="card" style={{height: "70vh", overflow: "scroll"}}>
               <div className="card-content">
                 <p className="title is-4">{plant.commonName}</p>
                 <p className="subtitle is-6">{plant.variety}</p>
                 <table className="table is-fullwidth is-striped">
-                  <tbody className="tbody">
+                  <tbody className="tbody" >
                     <tr className="tr"><td>Height:</td><td> {plant.height} inches</td></tr>
                     <tr className="tr"><td>Planting Depth:</td><td> {plant.plantingDepth} inches</td></tr>
                     <tr className="tr"><td>Plant Spacing:</td><td> {plant.plantSpacing} inches</td></tr>
@@ -89,6 +89,8 @@ class PlantCard extends React.Component {
                     <tr className="tr"><td>Seeding Date:</td><td> {plant.seedingDate.toString()}</td></tr>
                   </tbody>
                 </table>
+                <p className="subtitle is-6">NOTES:</p>
+                <p style={{fontSize: ".8em"}}>{plant.notes}</p>
               </div>
             </div>
             {this.displayAdminControls()}
